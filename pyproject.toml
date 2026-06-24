@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sr-opinf"
-version = "0.1.1"
+version = "0.1.2"
 description = "SR-OpInf: Symmetry-Reduced Operator Inference for Shift-Equivariant Systems"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
     { name = "Yu Shuai", email = "yu_shuai@princeton.edu" },
-    { name = "Clarence W. Rowley" },
+    { name = "Clarence W. Rowley", email = "cwrowley@princeton.edu" },
 ]
 keywords = [
     "operator-inference", "reduced-order-model", "model-order-reduction",
