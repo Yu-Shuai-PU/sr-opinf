@@ -89,7 +89,6 @@ class DataConfig:
 @dataclass
 class TrainingConfig: 
     """We are going to determine the dimension of this preliminary subspace via the diagram of singular value decay"""
-    # pod_energy_threshold: float = 1.0 - 1e-6
     pod_energy_threshold: float = 1.0 - 1e-4 # for the base solution case
     training_perturbation_to_benchmark_ratio: float = 0.1
     testing_perturbation_to_benchmark_ratio: float = 0.15 # (12, 13, 14, 15, 16)
