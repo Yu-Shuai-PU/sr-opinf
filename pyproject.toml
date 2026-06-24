@@ -3,15 +3,32 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "SROpInf"
+name = "sr-opinf"
 version = "0.1.0"
-description = "Symmetry-Reduced Operator Inference for 1D periodic PDEs (SR-OpInf)"
+description = "SR-OpInf: Symmetry-Reduced Operator Inference for Shift-Equivariant Systems"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
-    { name = "Yu Shuai", email = "ys5910@princeton.edu" },
+    { name = "Yu Shuai", email = "yu_shuai@princeton.edu" },
     { name = "Clarence W. Rowley" },
+]
+keywords = [
+    "operator-inference", "reduced-order-model", "model-order-reduction",
+    "symmetry-reduction", "shift-equivariant", "Kuramoto-Sivashinsky", "POD", "ROM",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Operating System :: OS Independent",
 ]
 dependencies = [
     "numpy>=1.23",
@@ -25,6 +42,11 @@ dev = [
     "pytest>=7.0",
     "ipywidgets>=8.0",
 ]
+
+[project.urls]
+Homepage        = "https://github.com/Yu-Shuai-PU/sr-opinf"
+Repository      = "https://github.com/Yu-Shuai-PU/sr-opinf"
+"Paper (arXiv)" = "https://arxiv.org/abs/2507.18780"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -83,8 +83,26 @@ SROpInf/
 
 Requires **Python ≥ 3.10** (developed and tested with Python 3.13).
 
+### From PyPI (recommended)
+
 ```bash
-# from the SROpInf/ directory
+python3 -m pip install sr-opinf
+```
+
+The package is then importable as `SROpInf`:
+
+```python
+import SROpInf
+```
+
+> The install name and the import name differ on purpose: you **install** the distribution
+> `sr-opinf` but **import** the package `SROpInf` — the same pattern as
+> `pip install scikit-learn` / `import sklearn`.
+
+### From source (for development / reproducing the experiments)
+
+```bash
+# from the repository root
 python3 -m pip install -e .          # runtime install (numpy, scipy, matplotlib, tqdm)
 python3 -m pip install -e ".[dev]"   # + dev/test extras (pytest, ipywidgets)
 ```
