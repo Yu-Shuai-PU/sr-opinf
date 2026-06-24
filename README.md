@@ -53,6 +53,10 @@ SROpInf/
 ├── pyproject.toml              # package metadata + dependencies (installable, src-layout)
 ├── requirements.txt            # runtime deps (see also pyproject.toml)
 ├── requirements-dev.txt        # dev/test deps
+├── RELEASING.md                # how to publish a new version to PyPI
+├── LICENSE                     # MIT License
+├── .github/workflows/
+│   └── publish.yml             # CI: build + publish to PyPI on a v* tag (Trusted Publishing)
 ├── src/SROpInf/
 │   ├── grids/grid1d.py         # Grid1D base + Grid1DUniformSpectral + Grid1DCubicSpline
 │   │                           #   (inner product, sqrt-mass map R, shift_x, diff_x, fft/ifft)
@@ -83,7 +87,15 @@ SROpInf/
 
 Requires **Python ≥ 3.10** (developed and tested with Python 3.13).
 
-### From PyPI (recommended)
+**Which option do you need?**
+
+- **Just using the library** — if you only want to call the `SROpInf` functions from
+  [`src/SROpInf`](src/SROpInf/) in your own code, install from PyPI; that is all you need.
+- **Reproducing the paper experiments** — the `example/` notebooks are **not** shipped on
+  PyPI (only the `SROpInf` library is). Clone the repository to get them, then install the
+  library — see *From source* below.
+
+### From PyPI (recommended for library use)
 
 ```bash
 python3 -m pip install sr-opinf
@@ -99,17 +111,22 @@ import SROpInf
 > `sr-opinf` but **import** the package `SROpInf` — the same pattern as
 > `pip install scikit-learn` / `import sklearn`.
 
-### From source (for development / reproducing the experiments)
+### From source (for reproducing the experiments / development)
+
+The `example/` notebooks live **only in the repository** (they are not part of the PyPI
+package), so clone it first, then install the library:
 
 ```bash
-# from the repository root
-python3 -m pip install -e .          # runtime install (numpy, scipy, matplotlib, tqdm)
-python3 -m pip install -e ".[dev]"   # + dev/test extras (pytest, ipywidgets)
+git clone https://github.com/Yu-Shuai-PU/sr-opinf
+cd sr-opinf
+python3 -m pip install -e ".[dev]"   # editable install + dev/test extras (pytest, ipywidgets)
+# or: python3 -m pip install -e .    # runtime deps only (numpy, scipy, matplotlib, tqdm)
 ```
 
 The `-e` (editable) install puts the `SROpInf` package on the path so the example notebooks can
-`import SROpInf...` directly. Exact dependency versions are declared in
-[`pyproject.toml`](pyproject.toml).
+`import SROpInf...` directly. (You could instead `pip install sr-opinf` for the library — the
+key point is that running the experiments requires the cloned `example/` files either way.)
+Exact dependency versions are declared in [`pyproject.toml`](pyproject.toml).
 
 ---
 
