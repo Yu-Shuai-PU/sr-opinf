@@ -1,5 +1,10 @@
 # SROpInf — Symmetry-Reduced Operator Inference
 
+[![PyPI](https://img.shields.io/pypi/v/sr-opinf.svg)](https://pypi.org/project/sr-opinf/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![arXiv](https://img.shields.io/badge/arXiv-2507.18780-b31b1b.svg)](https://arxiv.org/abs/2507.18780)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20823370.svg)](https://doi.org/10.5281/zenodo.20823370)
+
 `SROpInf` is a Python package for **symmetry-reduced model reduction of shift-equivariant
 systems via operator inference**. For a 1D periodic PDE whose solutions are dominated by a
 travelling / drifting structure (e.g. a travelling wave), it builds a reduced-order model (ROM)
