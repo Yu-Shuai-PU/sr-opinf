@@ -119,8 +119,9 @@ package), so clone it first, then install the library:
 ```bash
 git clone https://github.com/Yu-Shuai-PU/sr-opinf
 cd sr-opinf
-python3 -m pip install -e ".[dev]"   # editable install + dev/test extras (pytest, ipywidgets)
-# or: python3 -m pip install -e .    # runtime deps only (numpy, scipy, matplotlib, tqdm)
+python3 -m pip install -e ".[examples]"   # editable install + Jupyter stack to run the notebooks
+# extras: ".[examples]" -> jupyter + ipykernel + ipywidgets;  ".[dev]" -> pytest + ipywidgets
+# or just: python3 -m pip install -e .     # runtime deps only (numpy, scipy, matplotlib, tqdm)
 ```
 
 The `-e` (editable) install puts the `SROpInf` package on the path so the example notebooks can
@@ -140,7 +141,16 @@ POD subspace and compares **S-R POD–Galerkin** against **S-R OpInf** (plain, r
 penalty-regularized), on **both** the spectral and the cubic-spline grids — quantifying the effect
 of the shift-induced interpolation error.
 
+> **First run is self-contained, just slower.** The benchmark IC must sit on the KS attractor. If a
+> cached `output/ks_base_solution/data/traj_init_base.npy` is not found, the notebook automatically
+> runs a one-off `t = 120` burn-in to generate (and cache) it before the `T = 10` reconstruction —
+> no manual configuration needed. Later runs reuse the cached IC and start immediately.
+
 ### 2. Perturbed solutions — `ks_perturbed_solutions.ipynb`
+**Prerequisite:** run `ks_base_solution.ipynb` first (it generates the cached base IC this notebook
+reuses), and switch [`example/ks/configs.py`](example/ks/configs.py) to the perturbed-solutions case
+(`type_traj_training` and the matching `base_path`; the notebook's first cell asserts both).
+
 Generalization across a family of solutions: trains on perturbed initial conditions and evaluates on
 a disjoint, held-out testing set. Includes a **perturbation-amplitude sweep**: per-trajectory testing
 errors are written to `output/<case>/sweep_rRMSE/` and the final cell aggregates them into a box-plot

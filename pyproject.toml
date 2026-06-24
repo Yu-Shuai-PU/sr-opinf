@@ -42,6 +42,11 @@ dev = [
     "pytest>=7.0",
     "ipywidgets>=8.0",
 ]
+examples = [
+    "jupyter>=1.0",
+    "ipykernel>=6.0",
+    "ipywidgets>=8.0",
+]
 
 [project.urls]
 Homepage        = "https://github.com/Yu-Shuai-PU/sr-opinf"
