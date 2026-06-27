@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sr-opinf"
-version = "0.1.2"
+version = "0.1.5"
 description = "SR-OpInf: Symmetry-Reduced Operator Inference for Shift-Equivariant Systems"
 readme = "README.md"
 requires-python = ">=3.10"
