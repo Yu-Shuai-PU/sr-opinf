@@ -56,7 +56,7 @@ class PathConfig:
 class FOMConfig:
     """Physical and discretization parameters for the full-order model."""
     Lx: float = 2 * np.pi
-    nx: int   = 256
+    nx: int   = 40
     nu: float = 4/87
     T:  float = 10.0
     dt: float = 0.001
@@ -91,7 +91,7 @@ class TrainingConfig:
     """We are going to determine the dimension of this preliminary subspace via the diagram of singular value decay"""
     pod_energy_threshold: float = 1.0 - 1e-4 # for the base solution case
     training_perturbation_to_benchmark_ratio: float = 0.1
-    testing_perturbation_to_benchmark_ratio: float = 0.15 # (12, 13, 14, 15, 16)
+    testing_perturbation_to_benchmark_ratio: float = 0.12 # (12, 13, 14, 15, 16)
     opinf_CV_random_seed: int = 42
     
     # for base solution case, the optimal regularizers from grid search is:
