@@ -56,7 +56,7 @@ class PathConfig:
 class FOMConfig:
     """Physical and discretization parameters for the full-order model."""
     Lx: float = 2 * np.pi
-    nx: int   = 40
+    nx: int   = 256
     nu: float = 4/87
     T:  float = 10.0
     dt: float = 0.001
@@ -71,12 +71,12 @@ class FOMConfig:
 @dataclass
 class DataConfig:
     """Parameters for data generation, ROM benchmarking, and phase alignment."""
-    # type_traj_training: str = "perturbed_solutions" # "base_solution" or "perturbed_solutions"
     type_traj_training: str = "base_solution" # "base_solution" or "perturbed_solutions"
+    # type_traj_training: str = "perturbed_solutions" # "base_solution" or "perturbed_solutions"
     def __post_init__(self):
         if self.type_traj_training == "base_solution":
             self.num_traj_training = 1
-            self.shift_speed_denom_threshold = 0.0 # always 0 when trying to reconstruct the benchmark trajectory
+            self.shift_speed_denom_threshold = 0.0 # always 0 when trying to reconstruct the base solution
         elif self.type_traj_training == "perturbed_solutions":
             self.random_seed_training = 2000
             self.random_seed_testing = 523
@@ -90,19 +90,14 @@ class DataConfig:
 class TrainingConfig: 
     """We are going to determine the dimension of this preliminary subspace via the diagram of singular value decay"""
     pod_energy_threshold: float = 1.0 - 1e-4 # for the base solution case
-    training_perturbation_to_benchmark_ratio: float = 0.1
-    testing_perturbation_to_benchmark_ratio: float = 0.12 # (12, 13, 14, 15, 16)
+    training_perturbation_to_base_ratio: float = 0.1
+    testing_perturbation_to_base_ratio: float = 0.12 # (12, 13, 14, 15, 16)
     opinf_CV_random_seed: int = 42
     
     # for base solution case, the optimal regularizers from grid search is:
     # (lambda_poly, lambda_dcdt_numer) = (1.56e-1, 6.90e-6)
     # for the multiple-solutions case (10 training trajectories), r = 20, the optimal regularizers from grid search is:
     # (lambda_poly, lambda_dcdt_numer) = (1e-13, 1e-7)
-    
-    # opinf_penalty_weight_rhs_poly: List[float] = field(default_factory=lambda: list(np.logspace(-14, 3, 18, endpoint=True)))
-    # opinf_penalty_weight_dcdt_numer: List[float] = field(default_factory=lambda: list(np.logspace(-14, 3, 18, endpoint=True)))
-    # opinf_regularizer_rhs_poly: List[float] = field(default_factory=lambda: list(np.linspace(120e-4, 140e-4, 21, endpoint=True)))
-    # opinf_regularizer_dcdt_numer: List[float] = field(default_factory=lambda: list(np.linspace(110e-3, 130e-3, 21, endpoint=True)))
     opinf_penalty_weight_rhs_poly: float = 1.56e-1
     opinf_penalty_weight_dcdt_numer: float = 6.90e-6
     # opinf_penalty_weight_rhs_poly: float = 1e-13
